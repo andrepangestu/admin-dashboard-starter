@@ -27,7 +27,7 @@
     "globals": "^16.5.0",
     "prettier": "^3.6.2",
     "turbo": "^2.6.1",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.65.0"
   }
 }
