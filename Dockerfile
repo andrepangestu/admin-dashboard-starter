@@ -24,7 +24,7 @@ ENV VITE_ENABLE_MOCKS=$VITE_ENABLE_MOCKS
 COPY . .
 RUN pnpm --filter @starter/admin build
 
-FROM nginxinc/nginx-unprivileged:1.29-alpine AS runtime
+FROM nginxinc/nginx-unprivileged:1.31-alpine AS runtime
 COPY deploy/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY deploy/nginx/security-headers.conf /etc/nginx/conf.d/security-headers.conf
 COPY --from=build /workspace/apps/admin/dist /usr/share/nginx/html
