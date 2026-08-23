@@ -6,11 +6,10 @@ This file governs the entire repository. A more deeply nested `AGENTS.md` may ad
 
 ## Start Here
 
-1. Read `README.md`.
-2. Read `docs/product/product-scope.md` and `docs/architecture/overview.md`.
-3. Read the ADRs that affect the requested area.
-4. Inspect the closest feature and its tests before changing code.
-5. Update documentation when behavior, architecture, commands, or environment values change.
+1. Inspect the closest feature and its tests before changing code.
+2. Read the ADRs (`docs/decisions/`) and architecture docs that affect the requested area.
+3. Consult `README.md`, `docs/product/product-scope.md`, and `docs/architecture/overview.md` only when the task needs setup or product context.
+4. Update documentation when behavior, architecture, commands, or environment values change.
 
 ## Architectural Invariants
 

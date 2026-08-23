@@ -1,11 +1,15 @@
 @import 'tailwindcss';
-@import '@starter/ui/styles.css';
-@source '../../../../packages/ui/src';
+@import 'tw-animate-css';
+@import '@fontsource-variable/inter';
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  color: #15213d;
-  background: #eef2f8;
+  color-scheme: light;
+  color: var(--foreground);
+  background: var(--background);
   font-family:
+    'Inter Variable',
     Inter,
     ui-sans-serif,
     -apple-system,
@@ -14,17 +18,125 @@
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --ink: #15213d;
-  --ink-muted: #65708a;
-  --cobalt: #3157d5;
-  --cobalt-soft: #e9edff;
-  --line: #dfe5ef;
-  --surface: #ffffff;
-  --surface-muted: #f6f8fc;
-  --sidebar: #111a31;
+
+  /* Semantic tokens (shadcn naming), mapped from the original identity palette. */
+  --background: #eef2f8;
+  --foreground: #15213d;
+  --card: #ffffff;
+  --card-foreground: #15213d;
+  --popover: #ffffff;
+  --popover-foreground: #15213d;
+  --primary: #3157d5;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f8fc;
+  --secondary-foreground: #15213d;
+  --muted: #f6f8fc;
+  --muted-foreground: #65708a;
+  --accent: #e9edff;
+  --accent-foreground: #2444ad;
+  --destructive: #bd3737;
+  --destructive-foreground: #ffffff;
+  --border: #dfe5ef;
+  --input: #dfe5ef;
+  --ring: #3157d5;
+  --radius: 0.65rem;
   --success: #18794e;
   --warning: #a05a12;
-  --danger: #bd3737;
+  --success-soft: #e6f6ee;
+  --warning-soft: #fff1db;
+  --destructive-soft: #fdeaea;
+
+  /* The sidebar keeps its navy identity in both themes. */
+  --sidebar: #111a31;
+  --sidebar-foreground: #f7f9ff;
+  --sidebar-primary: #3157d5;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(49 87 213 / 18%);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgb(255 255 255 / 10%);
+  --sidebar-ring: rgb(111 140 255 / 40%);
+
+  /* Legacy aliases: keep the existing semantic CSS working and dark-aware. */
+  --ink: var(--foreground);
+  --ink-muted: var(--muted-foreground);
+  --cobalt: var(--primary);
+  --cobalt-soft: var(--accent);
+  --line: var(--border);
+  --surface: var(--card);
+  --surface-muted: var(--muted);
+  --danger: var(--destructive);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: #0c1428;
+  --foreground: #e6ebf7;
+  --card: #111a31;
+  --card-foreground: #e6ebf7;
+  --popover: #111a31;
+  --popover-foreground: #e6ebf7;
+  --primary: #6f8cff;
+  --primary-foreground: #0c1428;
+  --secondary: #16213c;
+  --secondary-foreground: #e6ebf7;
+  --muted: #16213c;
+  --muted-foreground: #93a0c0;
+  --accent: #1c294d;
+  --accent-foreground: #b9c6ff;
+  --destructive: #e05d5d;
+  --destructive-foreground: #0c1428;
+  --border: rgb(255 255 255 / 12%);
+  --input: rgb(255 255 255 / 14%);
+  --ring: #6f8cff;
+  --success: #4de2a1;
+  --warning: #e2b04d;
+  --success-soft: rgb(77 226 161 / 14%);
+  --warning-soft: rgb(226 176 77 / 14%);
+  --destructive-soft: rgb(224 93 93 / 16%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-success-soft: var(--success-soft);
+  --color-warning-soft: var(--warning-soft);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans:
+    'Inter Variable', Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 * {
@@ -33,7 +145,7 @@
 
 html {
   min-width: 320px;
-  background: #eef2f8;
+  background: var(--background);
 }
 
 body {
@@ -75,7 +187,7 @@ button {
   left: 0.75rem;
   transform: translateY(-180%);
   border-radius: 0.5rem;
-  background: white;
+  background: var(--card);
   padding: 0.75rem 1rem;
   color: var(--ink);
   font-weight: 700;
@@ -103,7 +215,7 @@ button {
     radial-gradient(circle at 12% 4%, rgb(111 140 255 / 24%) 0 1px, transparent 1.5px) 0 0 / 17px
       17px,
     var(--sidebar);
-  color: #f7f9ff;
+  color: var(--sidebar-foreground);
 }
 
 .brand-lockup {
@@ -139,7 +251,7 @@ button {
   place-items: center;
   border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 0.65rem;
-  background: #3157d5;
+  background: var(--sidebar-primary);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -185,14 +297,14 @@ button {
 }
 
 .nav-link:focus-visible {
-  outline: 3px solid rgb(111 140 255 / 40%);
+  outline: 3px solid var(--sidebar-ring);
   outline-offset: 2px;
 }
 
 .nav-link-active {
   border-color: rgb(111 140 255 / 25%);
-  background: rgb(49 87 213 / 18%);
-  color: white;
+  background: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
 }
 
 .nav-marker {
@@ -207,13 +319,18 @@ button {
   font-size: 0.65rem;
 }
 
+.nav-marker svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
 .system-rail {
   position: relative;
   display: flex;
   align-items: center;
   gap: 0.7rem;
   margin-top: auto;
-  border-top: 1px solid rgb(255 255 255 / 10%);
+  border-top: 1px solid var(--sidebar-border);
   padding: 1.2rem 0.4rem 0.25rem 1.1rem;
 }
 
@@ -247,8 +364,47 @@ button {
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
   padding: 0 2rem;
-  background: rgb(255 255 255 / 82%);
+  background: color-mix(in oklab, var(--card) 82%, transparent);
   backdrop-filter: blur(12px);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-button {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  background: transparent;
+  color: var(--ink-muted);
+  transition: 140ms ease;
+}
+
+.icon-button:hover {
+  background: var(--surface-muted);
+  color: var(--ink);
+}
+
+.icon-button:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ring) 25%, transparent);
+  outline-offset: 2px;
+}
+
+.icon-button svg {
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .environment-label {
@@ -273,7 +429,7 @@ button {
 }
 
 .profile-button:focus-visible {
-  outline: 3px solid rgb(49 87 213 / 25%);
+  outline: 3px solid color-mix(in oklab, var(--ring) 25%, transparent);
   outline-offset: 2px;
 }
 
@@ -410,6 +566,8 @@ button {
 .activity-card,
 .table-card {
   overflow: hidden;
+  padding: 0;
+  gap: 0;
 }
 
 .section-heading,
@@ -429,7 +587,7 @@ button {
 }
 
 .queue-count {
-  color: #c8d0df;
+  color: color-mix(in oklab, var(--ink-muted) 45%, var(--surface));
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 2rem;
   font-weight: 700;
@@ -505,7 +663,7 @@ button {
   margin-top: 0.2rem;
   border: 2px solid var(--cobalt);
   border-radius: 50%;
-  background: white;
+  background: var(--surface);
 }
 
 .activity-list time {
@@ -518,55 +676,8 @@ button {
   font-size: 0.9rem;
 }
 
-.search-field input {
+.search-input {
   width: min(16rem, 40vw);
-  border: 1px solid var(--line);
-  border-radius: 0.6rem;
-  background: var(--surface-muted);
-  padding: 0.65rem 0.75rem;
-  color: var(--ink);
-}
-
-.search-field input:disabled {
-  cursor: not-allowed;
-  opacity: 0.68;
-}
-
-.table-scroll {
-  overflow-x: auto;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8rem;
-  text-align: left;
-}
-
-.data-table th {
-  background: var(--surface-muted);
-  color: var(--ink-muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.data-table th,
-.data-table td {
-  border-bottom: 1px solid var(--line);
-  padding: 0.85rem 1.35rem;
-}
-
-.data-table tr:last-child td {
-  border-bottom: 0;
-}
-
-.data-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
 }
 
 .table-avatar {
@@ -576,25 +687,38 @@ button {
   font-size: 0.58rem;
 }
 
-.status-badge {
+.table-sort {
   display: inline-flex;
-  border-radius: 999px;
-  padding: 0.3rem 0.55rem;
-  font-size: 0.68rem;
-  font-weight: 750;
+  align-items: center;
+  gap: 0.35rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
 
-.status-active {
-  background: #e6f6ee;
-  color: var(--success);
+.table-sort:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ring) 25%, transparent);
+  outline-offset: 2px;
 }
-.status-invited {
-  background: #fff1db;
-  color: var(--warning);
+
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding: 0.85rem 1.35rem;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
 }
-.status-suspended {
-  background: #fdeaea;
-  color: var(--danger);
+
+.table-pagination-controls {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .empty-state,
@@ -633,7 +757,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: #fff8f8;
+  background: color-mix(in oklab, var(--danger) 6%, var(--surface));
   text-align: left;
 }
 
@@ -655,10 +779,6 @@ button {
   text-align: left;
 }
 
-.full-page-state .button {
-  margin-top: 1.5rem;
-}
-
 .state-code {
   color: var(--cobalt);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -667,29 +787,57 @@ button {
   letter-spacing: 0.12em;
 }
 
-@media (max-width: 920px) {
+/*
+ * Collapsed icon rail. Driven by the data attribute so the manual toggle and
+ * the narrow-viewport auto-collapse share one implementation; guarded to
+ * viewports above the bottom-tab-bar breakpoint.
+ */
+@media (min-width: 681px) {
   .app-shell {
+    transition: grid-template-columns 200ms ease;
+  }
+
+  .app-shell[data-sidebar='collapsed'] {
     grid-template-columns: 5rem minmax(0, 1fr);
   }
 
-  .brand-lockup > div,
-  .nav-label,
-  .nav-text,
-  .system-rail > div {
+  .app-shell[data-sidebar='collapsed'] .brand-lockup > div,
+  .app-shell[data-sidebar='collapsed'] .nav-label,
+  .app-shell[data-sidebar='collapsed'] .system-rail > div {
     display: none;
   }
 
-  .brand-lockup,
-  .nav-link,
-  .system-rail {
+  /* Visually hidden, not removed: links keep their accessible names. */
+  .app-shell[data-sidebar='collapsed'] .nav-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .app-shell[data-sidebar='collapsed'] .brand-lockup,
+  .app-shell[data-sidebar='collapsed'] .nav-link,
+  .app-shell[data-sidebar='collapsed'] .system-rail {
     justify-content: center;
   }
 
-  .system-rail {
+  .app-shell[data-sidebar='collapsed'] .system-rail {
     padding-left: 0.4rem;
   }
 
-  .system-rail::before {
+  .app-shell[data-sidebar='collapsed'] .system-rail::before {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  /* The viewport forces the collapsed rail here; the manual toggle is hidden. */
+  .sidebar-toggle {
     display: none;
   }
 
@@ -770,7 +918,7 @@ button {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .attention-list .button {
+  .attention-list button {
     grid-column: 2;
     justify-self: start;
   }
@@ -780,7 +928,7 @@ button {
     flex-direction: column;
   }
 
-  .search-field input {
+  .search-input {
     width: 100%;
   }
 

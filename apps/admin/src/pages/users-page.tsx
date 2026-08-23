@@ -1,10 +1,12 @@
+import { ApiError } from '@starter/api-client';
 import { useQuery } from '@tanstack/react-query';
-import { Button, Card } from '@starter/ui';
 
 import { listUsers } from '@/features/users/api/list-users';
-import { UserTable } from '@/features/users/ui/user-table';
+import { UsersDirectory } from '@/features/users/ui/users-directory';
 import { env } from '@/shared/config/env';
 import { api } from '@/shared/lib/api';
+import { Button } from '@/shared/ui/button';
+import { Card } from '@/shared/ui/card';
 import { PageHeader } from '@/shared/ui/page-header';
 
 export function UsersPage() {
@@ -12,6 +14,9 @@ export function UsersPage() {
     queryKey: ['users', { page: 1 }],
     queryFn: ({ signal }) => listUsers({ api, useDemoData: env.ENABLE_MOCKS, signal }),
   });
+
+  const isPermissionDenied =
+    usersQuery.error instanceof ApiError && usersQuery.error.status === 403;
 
   return (
     <div className="page-stack">
@@ -23,36 +28,36 @@ export function UsersPage() {
       />
 
       <Card className="table-card">
-        <div className="table-toolbar">
-          <div>
-            <strong>Workspace directory</strong>
-            <span>{usersQuery.data?.meta.total ?? 0} total users</span>
-          </div>
-          <label className="search-field">
-            <span className="sr-only">Search users</span>
-            <input type="search" placeholder="Search users" disabled />
-          </label>
-        </div>
-
         {usersQuery.isPending ? (
           <div className="route-state" role="status">
             Loading users…
           </div>
         ) : null}
 
-        {usersQuery.isError ? (
+        {usersQuery.isError && isPermissionDenied ? (
+          <div className="inline-error" role="alert">
+            <div>
+              <strong>You do not have permission to view users</strong>
+              <span>Ask a workspace administrator to grant access to the directory.</span>
+            </div>
+          </div>
+        ) : null}
+
+        {usersQuery.isError && !isPermissionDenied ? (
           <div className="inline-error" role="alert">
             <div>
               <strong>Users could not be loaded</strong>
               <span>Check the API URL and your session, then try again.</span>
             </div>
-            <Button variant="secondary" onClick={() => void usersQuery.refetch()}>
+            <Button variant="outline" onClick={() => void usersQuery.refetch()}>
               Try again
             </Button>
           </div>
         ) : null}
 
-        {usersQuery.data ? <UserTable users={usersQuery.data.data} /> : null}
+        {usersQuery.data ? (
+          <UsersDirectory users={usersQuery.data.data} totalCount={usersQuery.data.meta.total} />
+        ) : null}
       </Card>
     </div>
   );
