@@ -1,0 +1,21 @@
+{
+  "name": "@starter/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "generate": "openapi-ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint src --max-warnings=0",
+    "test": "vitest run",
+    "clean": "rm -rf dist coverage *.tsbuildinfo"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.99.0",
+    "typescript": "catalog:",
+    "vitest": "^4.1.10"
+  }
+}

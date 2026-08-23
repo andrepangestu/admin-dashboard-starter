@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+playwright-report
+test-results
+.turbo
+pnpm-lock.yaml
+apps/admin/src/routeTree.gen.ts
+packages/api-client/src/generated

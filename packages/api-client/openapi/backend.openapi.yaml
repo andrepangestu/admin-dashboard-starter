@@ -1,0 +1,8 @@
+openapi: 3.1.0
+info:
+  title: Replace With Backend API Contract
+  version: 0.0.0
+  description: >-
+    A valid empty contract that keeps generator configuration inspectable. Replace this file with the
+    authoritative backend OpenAPI document before running the generate script.
+paths: {}

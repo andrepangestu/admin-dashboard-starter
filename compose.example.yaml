@@ -1,0 +1,23 @@
+services:
+  admin:
+    build:
+      context: .
+      args:
+        VITE_APP_NAME: ${VITE_APP_NAME:-Admin Workspace}
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:3000/api}
+        VITE_ENABLE_MOCKS: ${VITE_ENABLE_MOCKS:-false}
+    image: admin-dashboard-starter:local
+    ports:
+      - '8080:8080'
+    read_only: true
+    restart: unless-stopped
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:8080/health']
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

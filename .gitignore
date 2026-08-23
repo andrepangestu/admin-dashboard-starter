@@ -1,0 +1,15 @@
+node_modules/
+.pnpm-store/
+.turbo/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+*.local
+apps/admin/src/routeTree.gen.ts
+packages/api-client/src/generated/

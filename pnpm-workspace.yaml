@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+
+# msw's postinstall only prepares its optional Service Worker assets; the worker
+# is generated on demand with `msw init`, so the script is safe to skip.
+allowBuilds:
+  msw: false
+
+catalog:
+  '@types/node': ^24.10.1
+  '@types/react': ^19.2.7
+  '@types/react-dom': ^19.2.3
+  react: ^19.2.8
+  react-dom: ^19.2.8
+  typescript: ^6.0.2
