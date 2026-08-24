@@ -2,7 +2,7 @@
 
 ## Direction
 
-The starter uses an operations-workspace visual language: quiet ink surfaces, cobalt action color, monospaced utility labels, and a status rail that makes system condition visible without dominating the work.
+The starter uses a soft, minimal visual language ("Soft Sky"): cool slate neutrals, a friendly ocean-blue action color, a light sidebar that blends with the page, generous 1rem radii, and gentle blue-tinted elevation on cards. Utility labels are small sans-serif; system status stays visible through a quiet pulse in the sidebar footer. Data tables are airy lists: no header band, tall rows with softened hairline separators, and dot-plus-text status instead of pills.
 
 ## Layers
 
@@ -14,7 +14,7 @@ The starter uses an operations-workspace visual language: quiet ink surfaces, co
 
 ## Theming
 
-- Dark mode is class-based: `@custom-variant dark` keyed on `html.dark`. The dark palette derives from the identity colors (navy card surfaces, periwinkle primary); the sidebar stays navy in both themes.
+- Dark mode is class-based: `@custom-variant dark` keyed on `html.dark`. The dark palette mirrors the light identity on deep blue-slate grounds (sky-blue primary); the sidebar is themed per mode (light sky tint in light, deep slate in dark).
 - `ThemeProvider` (`apps/admin/src/app/theme-provider.tsx`) owns the light/dark/system preference, persists it to `localStorage` (`admin-ui-theme`), tracks `prefers-color-scheme` while in system mode, and keeps `meta[name="theme-color"]` in sync.
 - `public/theme-init.js` applies the stored theme before first paint. It must stay an external file: the production CSP allows only `script-src 'self'`.
 

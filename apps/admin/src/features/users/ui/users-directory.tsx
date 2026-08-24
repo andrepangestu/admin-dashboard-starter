@@ -10,7 +10,6 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 
-import { Badge } from '@/shared/ui/badge';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import {
@@ -25,10 +24,10 @@ import {
 
 import type { User, UserStatus } from '../model/user';
 
-const statusBadgeClass: Record<UserStatus, string> = {
-  active: 'border-transparent bg-success-soft text-success',
-  invited: 'border-transparent bg-warning-soft text-warning',
-  suspended: 'border-transparent bg-destructive-soft text-destructive',
+const statusToneClass: Record<UserStatus, string> = {
+  active: 'text-success',
+  invited: 'text-warning',
+  suspended: 'text-destructive',
 };
 
 function formatStatus(status: UserStatus): string {
@@ -62,9 +61,12 @@ const columns = [
   columnHelper.accessor('status', {
     header: 'Status',
     cell: (info) => (
-      <Badge className={`rounded-full font-bold ${statusBadgeClass[info.getValue()]}`}>
+      <span
+        className={`inline-flex items-center gap-2 font-semibold ${statusToneClass[info.getValue()]}`}
+      >
+        <span className="size-2 rounded-full bg-current" aria-hidden="true" />
         {formatStatus(info.getValue())}
-      </Badge>
+      </span>
     ),
   }),
 ];
@@ -157,7 +159,7 @@ export function UsersDirectory({ users, totalCount }: UsersDirectoryProps) {
                       key={header.id}
                       scope="col"
                       aria-sort={ariaSort(header.column.getIsSorted())}
-                      className="bg-muted px-5 font-mono text-[0.64rem] font-bold tracking-[0.07em] uppercase"
+                      className="h-auto px-5 pt-4 pb-2.5 text-[0.68rem] font-semibold tracking-[0.04em] uppercase text-muted-foreground/80"
                     >
                       <button
                         type="button"
@@ -175,9 +177,9 @@ export function UsersDirectory({ users, totalCount }: UsersDirectoryProps) {
             </TableHeader>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} className="border-border/60 hover:bg-accent/40">
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-5 py-3">
+                    <TableCell key={cell.id} className="px-5 py-4">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}

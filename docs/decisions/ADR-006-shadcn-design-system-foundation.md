@@ -25,3 +25,7 @@ The starter shipped with a handwritten semantic stylesheet whose tokens (`--ink`
 ## Reconsider When
 
 The app moves to a design system owned outside this repo, or shadcn's token contract changes incompatibly in a future major version.
+
+## Amendment — 2026-08-24
+
+The "keep the existing visual identity" clause is superseded by a product decision: after reviewing the migrated UI, the owner rejected the navy/cobalt console identity (dark sidebar, monospace utility labels, oversized headings). The palette and identity CSS were replaced with a soft minimal direction ("Soft Sky": light blended sidebar, ocean-blue primary, cool slate neutrals, 1rem radii, soft elevation) chosen from screenshot prototypes. Everything structural in this ADR — the shadcn token schema, `@theme inline` exposure, class-based dark mode, external theme bootstrap, component placement, and hex-over-OKLCH — is unchanged; only token values and the identity-specific rules moved.

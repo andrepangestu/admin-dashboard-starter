@@ -112,17 +112,17 @@ describe('ThemeProvider', () => {
     installMatchMedia(false);
     const meta = document.createElement('meta');
     meta.setAttribute('name', 'theme-color');
-    meta.setAttribute('content', '#15213d');
+    meta.setAttribute('content', '#f6f8fc');
     document.head.append(meta);
     const user = userEvent.setup();
 
     renderProbe();
     await user.click(screen.getByRole('button', { name: 'choose dark' }));
 
-    expect(meta.getAttribute('content')).toBe('#0c1428');
+    expect(meta.getAttribute('content')).toBe('#0f1723');
 
     await user.click(screen.getByRole('button', { name: 'choose light' }));
 
-    expect(meta.getAttribute('content')).toBe('#15213d');
+    expect(meta.getAttribute('content')).toBe('#f6f8fc');
   });
 });

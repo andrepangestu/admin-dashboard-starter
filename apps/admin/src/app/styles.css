@@ -19,42 +19,42 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  /* Semantic tokens (shadcn naming), mapped from the original identity palette. */
-  --background: #eef2f8;
-  --foreground: #15213d;
+  /* Semantic tokens (shadcn naming) — "Soft Sky": friendly ocean blue on cool slate. */
+  --background: #f6f8fc;
+  --foreground: #26324b;
   --card: #ffffff;
-  --card-foreground: #15213d;
+  --card-foreground: #26324b;
   --popover: #ffffff;
-  --popover-foreground: #15213d;
-  --primary: #3157d5;
+  --popover-foreground: #26324b;
+  --primary: #0284c7;
   --primary-foreground: #ffffff;
-  --secondary: #f6f8fc;
-  --secondary-foreground: #15213d;
-  --muted: #f6f8fc;
-  --muted-foreground: #65708a;
-  --accent: #e9edff;
-  --accent-foreground: #2444ad;
-  --destructive: #bd3737;
+  --secondary: #eef2f8;
+  --secondary-foreground: #26324b;
+  --muted: #eef2f8;
+  --muted-foreground: #62708a;
+  --accent: #e0f2fe;
+  --accent-foreground: #075985;
+  --destructive: #d64550;
   --destructive-foreground: #ffffff;
-  --border: #dfe5ef;
-  --input: #dfe5ef;
-  --ring: #3157d5;
-  --radius: 0.65rem;
-  --success: #18794e;
-  --warning: #a05a12;
-  --success-soft: #e6f6ee;
-  --warning-soft: #fff1db;
-  --destructive-soft: #fdeaea;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0284c7;
+  --radius: 1rem;
+  --success: #189e61;
+  --warning: #d97706;
+  --success-soft: #e7f6ef;
+  --warning-soft: #fdf1e0;
+  --destructive-soft: #fdeef0;
 
-  /* The sidebar keeps its navy identity in both themes. */
-  --sidebar: #111a31;
-  --sidebar-foreground: #f7f9ff;
-  --sidebar-primary: #3157d5;
+  /* Light, sky-tinted sidebar that blends with the page. */
+  --sidebar: #ecf4fa;
+  --sidebar-foreground: #46536e;
+  --sidebar-primary: #0284c7;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgb(49 87 213 / 18%);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgb(255 255 255 / 10%);
-  --sidebar-ring: rgb(111 140 255 / 40%);
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #26324b;
+  --sidebar-border: #dde8f2;
+  --sidebar-ring: rgb(2 132 199 / 35%);
 
   /* Legacy aliases: keep the existing semantic CSS working and dark-aware. */
   --ink: var(--foreground);
@@ -70,30 +70,38 @@
 .dark {
   color-scheme: dark;
 
-  --background: #0c1428;
-  --foreground: #e6ebf7;
-  --card: #111a31;
-  --card-foreground: #e6ebf7;
-  --popover: #111a31;
-  --popover-foreground: #e6ebf7;
-  --primary: #6f8cff;
-  --primary-foreground: #0c1428;
-  --secondary: #16213c;
-  --secondary-foreground: #e6ebf7;
-  --muted: #16213c;
-  --muted-foreground: #93a0c0;
-  --accent: #1c294d;
-  --accent-foreground: #b9c6ff;
-  --destructive: #e05d5d;
-  --destructive-foreground: #0c1428;
-  --border: rgb(255 255 255 / 12%);
-  --input: rgb(255 255 255 / 14%);
-  --ring: #6f8cff;
-  --success: #4de2a1;
-  --warning: #e2b04d;
-  --success-soft: rgb(77 226 161 / 14%);
-  --warning-soft: rgb(226 176 77 / 14%);
-  --destructive-soft: rgb(224 93 93 / 16%);
+  --background: #0f1723;
+  --foreground: #e4ecf7;
+  --card: #172236;
+  --card-foreground: #e4ecf7;
+  --popover: #172236;
+  --popover-foreground: #e4ecf7;
+  --primary: #38bdf8;
+  --primary-foreground: #0c1523;
+  --secondary: #1e2b45;
+  --secondary-foreground: #e4ecf7;
+  --muted: #1e2b45;
+  --muted-foreground: #8fa3bd;
+  --accent: #1b3a55;
+  --accent-foreground: #bae6fd;
+  --destructive: #fb7185;
+  --destructive-foreground: #0f1723;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 12%);
+  --ring: #38bdf8;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --success-soft: rgb(52 211 153 / 12%);
+  --warning-soft: rgb(251 191 36 / 12%);
+  --destructive-soft: rgb(251 113 133 / 14%);
+  --sidebar: #131d33;
+  --sidebar-foreground: #a9bad3;
+  --sidebar-primary: #38bdf8;
+  --sidebar-primary-foreground: #0c1523;
+  --sidebar-accent: #21324f;
+  --sidebar-accent-foreground: #eaf3fe;
+  --sidebar-border: rgb(255 255 255 / 8%);
+  --sidebar-ring: rgb(56 189 248 / 40%);
 }
 
 @theme inline {
@@ -211,10 +219,8 @@ button {
   flex-direction: column;
   overflow: hidden;
   padding: 1.4rem 1.1rem;
-  background:
-    radial-gradient(circle at 12% 4%, rgb(111 140 255 / 24%) 0 1px, transparent 1.5px) 0 0 / 17px
-      17px,
-    var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  background: var(--sidebar);
   color: var(--sidebar-foreground);
 }
 
@@ -234,13 +240,14 @@ button {
 
 .brand-lockup strong,
 .system-rail strong {
+  color: var(--foreground);
   font-size: 0.875rem;
   letter-spacing: -0.01em;
 }
 
 .brand-lockup span:not(.brand-mark),
 .system-rail span:not(.system-pulse) {
-  color: #9eaccb;
+  color: color-mix(in oklab, var(--sidebar-foreground) 65%, transparent);
   font-size: 0.72rem;
 }
 
@@ -249,9 +256,10 @@ button {
   width: 2.3rem;
   height: 2.3rem;
   place-items: center;
-  border: 1px solid rgb(255 255 255 / 15%);
-  border-radius: 0.65rem;
+  border: 0;
+  border-radius: 0.8rem;
   background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -265,15 +273,14 @@ button {
 .nav-label,
 .eyebrow,
 .environment-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .nav-label {
   margin: 0 0.65rem 0.4rem;
-  color: #7f8dad;
-  font-size: 0.65rem;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  font-size: 0.72rem;
 }
 
 .nav-link {
@@ -282,18 +289,18 @@ button {
   gap: 0.7rem;
   min-height: 2.75rem;
   border: 1px solid transparent;
-  border-radius: 0.7rem;
+  border-radius: 0.8rem;
   padding: 0.55rem 0.65rem;
-  color: #aeb9d2;
+  color: var(--sidebar-foreground);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   transition: 140ms ease;
 }
 
 .nav-link:hover {
-  background: rgb(255 255 255 / 6%);
-  color: white;
+  background: color-mix(in oklab, var(--sidebar-foreground) 8%, transparent);
+  color: var(--sidebar-accent-foreground);
 }
 
 .nav-link:focus-visible {
@@ -302,8 +309,8 @@ button {
 }
 
 .nav-link-active {
-  border-color: rgb(111 140 255 / 25%);
   background: var(--sidebar-accent);
+  box-shadow: 0 2px 8px rgb(20 60 120 / 10%);
   color: var(--sidebar-accent-foreground);
 }
 
@@ -312,11 +319,14 @@ button {
   width: 1.65rem;
   height: 1.65rem;
   place-items: center;
-  border-radius: 0.45rem;
-  background: rgb(255 255 255 / 7%);
-  color: #8fa5ff;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: color-mix(in oklab, var(--sidebar-foreground) 75%, transparent);
   font-size: 0.65rem;
+}
+
+.nav-link-active .nav-marker {
+  color: var(--primary);
 }
 
 .nav-marker svg {
@@ -334,23 +344,12 @@ button {
   padding: 1.2rem 0.4rem 0.25rem 1.1rem;
 }
 
-.system-rail::before {
-  position: absolute;
-  top: 1.2rem;
-  bottom: 0.25rem;
-  left: 0.15rem;
-  width: 2px;
-  border-radius: 1rem;
-  background: linear-gradient(#4de2a1, rgb(77 226 161 / 10%));
-  content: '';
-}
-
 .system-pulse {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: #4de2a1;
-  box-shadow: 0 0 0 5px rgb(77 226 161 / 10%);
+  background: var(--success);
+  box-shadow: 0 0 0 4px var(--success-soft);
 }
 
 .workspace {
@@ -481,10 +480,10 @@ button {
 .full-page-state h1 {
   margin: 0.4rem 0 0.55rem;
   color: var(--ink);
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  font-weight: 760;
-  letter-spacing: -0.045em;
-  line-height: 1.03;
+  font-size: clamp(1.5rem, 2.5vw, 2.05rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .page-header p,
@@ -496,9 +495,9 @@ button {
 }
 
 .eyebrow {
-  color: var(--cobalt);
-  font-size: 0.66rem;
-  font-weight: 750;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .metric-grid {
@@ -516,17 +515,6 @@ button {
   padding: 1.25rem;
 }
 
-.metric-card::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 3rem;
-  height: 0.22rem;
-  border-radius: 0 0 0 1rem;
-  background: var(--cobalt);
-  content: '';
-}
-
 .metric-card > span {
   color: var(--ink-muted);
   font-size: 0.78rem;
@@ -535,10 +523,10 @@ button {
 
 .metric-card > strong {
   align-self: end;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-variant-numeric: tabular-nums;
   font-weight: 650;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 
 .metric-card > small {
@@ -570,6 +558,16 @@ button {
   gap: 0;
 }
 
+.metric-card,
+.attention-card,
+.activity-card,
+.table-card {
+  border-color: transparent;
+  box-shadow:
+    0 1px 2px rgb(20 60 120 / 5%),
+    0 10px 30px rgb(20 60 120 / 7%);
+}
+
 .section-heading,
 .table-toolbar {
   display: flex;
@@ -588,9 +586,9 @@ button {
 
 .queue-count {
   color: color-mix(in oklab, var(--ink-muted) 45%, var(--surface));
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 2rem;
-  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
 }
 
 .attention-list > div {
@@ -668,8 +666,8 @@ button {
 
 .activity-list time {
   color: var(--ink-muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .table-toolbar strong {
@@ -681,10 +679,10 @@ button {
 }
 
 .table-avatar {
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
   flex: 0 0 auto;
-  font-size: 0.58rem;
+  font-size: 0.62rem;
 }
 
 .table-sort {
@@ -737,8 +735,7 @@ button {
   border-radius: 0.8rem;
   background: var(--cobalt-soft);
   color: var(--cobalt);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .empty-state h2 {
@@ -781,10 +778,9 @@ button {
 
 .state-code {
   color: var(--cobalt);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 /*

@@ -16,8 +16,8 @@ import {
 } from './theme-context';
 
 const THEME_COLORS: Record<ResolvedTheme, string> = {
-  light: '#15213d',
-  dark: '#0c1428',
+  light: '#f6f8fc',
+  dark: '#0f1723',
 };
 
 const DARK_QUERY = '(prefers-color-scheme: dark)';
