@@ -53,6 +53,7 @@ shared/config/env.ts        → the ONLY place import.meta.env is read (Zod-vali
 ## Gotchas
 
 - TypeScript 6: `baseUrl` is a hard error (TS5101). The `@/*` alias works through `paths` alone in `apps/admin/tsconfig.app.json`; keep it in sync with `resolve.alias` in both `vite.config.ts` and `vitest.config.ts`.
+- TypeScript stays on 6.x across the whole repo, root `package.json` included — `typescript-eslint` peers on `<6.1.0` and throws on startup under TS 7, which fails every `eslint` run before a single file is checked. Bump it only in the `catalog:` entry, and only once typescript-eslint ships TS 7 support.
 - Vitest `include` is restricted to `src/**` in `apps/admin/vitest.config.ts`. Playwright specs live in `apps/admin/e2e/` — if Vitest ever picks them up, the suite fails with "Playwright Test did not expect test() to be called here".
 - `apps/admin/e2e/` is type-covered by `tsconfig.node.json` (`include`). New e2e files outside covered paths break typed linting with "was not found by the project service".
 - pnpm 11 blocks dependency postinstall scripts. Decisions are recorded in `allowBuilds` in `pnpm-workspace.yaml` (`msw: false` deliberately — its script only prepares optional Service Worker assets). A new dep with a build script will fail every `pnpm` command until an entry is added there.
