@@ -8,7 +8,7 @@ allowBuilds:
   msw: false
 
 catalog:
-  '@types/node': ^24.10.1
+  '@types/node': ^26.2.0
   '@types/react': ^19.2.7
   '@types/react-dom': ^19.2.3
   react: ^19.2.8
@@ -16,4 +16,4 @@ catalog:
   # Capped below 6.1 by typescript-eslint's peer range; TS 7 makes it throw at
   # startup, so every `eslint` run in the repo fails. The root package.json
   # references this entry too, since it owns the shared typescript-eslint install.
-  typescript: ^6.0.2
+  typescript: ^7.0.2
