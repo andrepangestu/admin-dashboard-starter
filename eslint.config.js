@@ -39,4 +39,15 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-call': 'off',
     },
   },
+  {
+    // Plain browser scripts served as-is (e.g. the pre-paint theme bootstrap).
+    files: ['**/public/**/*.js'],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: { globals: globals.browser },
+  },
+  {
+    // shadcn-generated components export cva variant objects alongside components.
+    files: ['apps/admin/src/shared/ui/**'],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
 );

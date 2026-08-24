@@ -1,11 +1,15 @@
 @import 'tailwindcss';
-@import '@starter/ui/styles.css';
-@source '../../../../packages/ui/src';
+@import 'tw-animate-css';
+@import '@fontsource-variable/inter';
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  color: #15213d;
-  background: #eef2f8;
+  color-scheme: light;
+  color: var(--foreground);
+  background: var(--background);
   font-family:
+    'Inter Variable',
     Inter,
     ui-sans-serif,
     -apple-system,
@@ -14,17 +18,133 @@
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --ink: #15213d;
-  --ink-muted: #65708a;
-  --cobalt: #3157d5;
-  --cobalt-soft: #e9edff;
-  --line: #dfe5ef;
-  --surface: #ffffff;
-  --surface-muted: #f6f8fc;
-  --sidebar: #111a31;
-  --success: #18794e;
-  --warning: #a05a12;
-  --danger: #bd3737;
+
+  /* Semantic tokens (shadcn naming) — "Soft Sky": friendly ocean blue on cool slate. */
+  --background: #f6f8fc;
+  --foreground: #26324b;
+  --card: #ffffff;
+  --card-foreground: #26324b;
+  --popover: #ffffff;
+  --popover-foreground: #26324b;
+  --primary: #0284c7;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2f8;
+  --secondary-foreground: #26324b;
+  --muted: #eef2f8;
+  --muted-foreground: #62708a;
+  --accent: #e0f2fe;
+  --accent-foreground: #075985;
+  --destructive: #d64550;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0284c7;
+  --radius: 1rem;
+  --success: #189e61;
+  --warning: #d97706;
+  --success-soft: #e7f6ef;
+  --warning-soft: #fdf1e0;
+  --destructive-soft: #fdeef0;
+
+  /* Light, sky-tinted sidebar that blends with the page. */
+  --sidebar: #ecf4fa;
+  --sidebar-foreground: #46536e;
+  --sidebar-primary: #0284c7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #26324b;
+  --sidebar-border: #dde8f2;
+  --sidebar-ring: rgb(2 132 199 / 35%);
+
+  /* Legacy aliases: keep the existing semantic CSS working and dark-aware. */
+  --ink: var(--foreground);
+  --ink-muted: var(--muted-foreground);
+  --cobalt: var(--primary);
+  --cobalt-soft: var(--accent);
+  --line: var(--border);
+  --surface: var(--card);
+  --surface-muted: var(--muted);
+  --danger: var(--destructive);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: #0f1723;
+  --foreground: #e4ecf7;
+  --card: #172236;
+  --card-foreground: #e4ecf7;
+  --popover: #172236;
+  --popover-foreground: #e4ecf7;
+  --primary: #38bdf8;
+  --primary-foreground: #0c1523;
+  --secondary: #1e2b45;
+  --secondary-foreground: #e4ecf7;
+  --muted: #1e2b45;
+  --muted-foreground: #8fa3bd;
+  --accent: #1b3a55;
+  --accent-foreground: #bae6fd;
+  --destructive: #fb7185;
+  --destructive-foreground: #0f1723;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 12%);
+  --ring: #38bdf8;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --success-soft: rgb(52 211 153 / 12%);
+  --warning-soft: rgb(251 191 36 / 12%);
+  --destructive-soft: rgb(251 113 133 / 14%);
+  --sidebar: #131d33;
+  --sidebar-foreground: #a9bad3;
+  --sidebar-primary: #38bdf8;
+  --sidebar-primary-foreground: #0c1523;
+  --sidebar-accent: #21324f;
+  --sidebar-accent-foreground: #eaf3fe;
+  --sidebar-border: rgb(255 255 255 / 8%);
+  --sidebar-ring: rgb(56 189 248 / 40%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-success-soft: var(--success-soft);
+  --color-warning-soft: var(--warning-soft);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans:
+    'Inter Variable', Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 * {
@@ -33,7 +153,7 @@
 
 html {
   min-width: 320px;
-  background: #eef2f8;
+  background: var(--background);
 }
 
 body {
@@ -75,7 +195,7 @@ button {
   left: 0.75rem;
   transform: translateY(-180%);
   border-radius: 0.5rem;
-  background: white;
+  background: var(--card);
   padding: 0.75rem 1rem;
   color: var(--ink);
   font-weight: 700;
@@ -99,11 +219,9 @@ button {
   flex-direction: column;
   overflow: hidden;
   padding: 1.4rem 1.1rem;
-  background:
-    radial-gradient(circle at 12% 4%, rgb(111 140 255 / 24%) 0 1px, transparent 1.5px) 0 0 / 17px
-      17px,
-    var(--sidebar);
-  color: #f7f9ff;
+  border-right: 1px solid var(--sidebar-border);
+  background: var(--sidebar);
+  color: var(--sidebar-foreground);
 }
 
 .brand-lockup {
@@ -122,13 +240,14 @@ button {
 
 .brand-lockup strong,
 .system-rail strong {
+  color: var(--foreground);
   font-size: 0.875rem;
   letter-spacing: -0.01em;
 }
 
 .brand-lockup span:not(.brand-mark),
 .system-rail span:not(.system-pulse) {
-  color: #9eaccb;
+  color: color-mix(in oklab, var(--sidebar-foreground) 65%, transparent);
   font-size: 0.72rem;
 }
 
@@ -137,9 +256,10 @@ button {
   width: 2.3rem;
   height: 2.3rem;
   place-items: center;
-  border: 1px solid rgb(255 255 255 / 15%);
-  border-radius: 0.65rem;
-  background: #3157d5;
+  border: 0;
+  border-radius: 0.8rem;
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -153,15 +273,14 @@ button {
 .nav-label,
 .eyebrow,
 .environment-label {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .nav-label {
   margin: 0 0.65rem 0.4rem;
-  color: #7f8dad;
-  font-size: 0.65rem;
+  color: color-mix(in oklab, var(--sidebar-foreground) 60%, transparent);
+  font-size: 0.72rem;
 }
 
 .nav-link {
@@ -170,29 +289,29 @@ button {
   gap: 0.7rem;
   min-height: 2.75rem;
   border: 1px solid transparent;
-  border-radius: 0.7rem;
+  border-radius: 0.8rem;
   padding: 0.55rem 0.65rem;
-  color: #aeb9d2;
+  color: var(--sidebar-foreground);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   transition: 140ms ease;
 }
 
 .nav-link:hover {
-  background: rgb(255 255 255 / 6%);
-  color: white;
+  background: color-mix(in oklab, var(--sidebar-foreground) 8%, transparent);
+  color: var(--sidebar-accent-foreground);
 }
 
 .nav-link:focus-visible {
-  outline: 3px solid rgb(111 140 255 / 40%);
+  outline: 3px solid var(--sidebar-ring);
   outline-offset: 2px;
 }
 
 .nav-link-active {
-  border-color: rgb(111 140 255 / 25%);
-  background: rgb(49 87 213 / 18%);
-  color: white;
+  background: var(--sidebar-accent);
+  box-shadow: 0 2px 8px rgb(20 60 120 / 10%);
+  color: var(--sidebar-accent-foreground);
 }
 
 .nav-marker {
@@ -200,11 +319,19 @@ button {
   width: 1.65rem;
   height: 1.65rem;
   place-items: center;
-  border-radius: 0.45rem;
-  background: rgb(255 255 255 / 7%);
-  color: #8fa5ff;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: color-mix(in oklab, var(--sidebar-foreground) 75%, transparent);
   font-size: 0.65rem;
+}
+
+.nav-link-active .nav-marker {
+  color: var(--primary);
+}
+
+.nav-marker svg {
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .system-rail {
@@ -213,27 +340,16 @@ button {
   align-items: center;
   gap: 0.7rem;
   margin-top: auto;
-  border-top: 1px solid rgb(255 255 255 / 10%);
+  border-top: 1px solid var(--sidebar-border);
   padding: 1.2rem 0.4rem 0.25rem 1.1rem;
-}
-
-.system-rail::before {
-  position: absolute;
-  top: 1.2rem;
-  bottom: 0.25rem;
-  left: 0.15rem;
-  width: 2px;
-  border-radius: 1rem;
-  background: linear-gradient(#4de2a1, rgb(77 226 161 / 10%));
-  content: '';
 }
 
 .system-pulse {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: #4de2a1;
-  box-shadow: 0 0 0 5px rgb(77 226 161 / 10%);
+  background: var(--success);
+  box-shadow: 0 0 0 4px var(--success-soft);
 }
 
 .workspace {
@@ -247,8 +363,47 @@ button {
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
   padding: 0 2rem;
-  background: rgb(255 255 255 / 82%);
+  background: color-mix(in oklab, var(--card) 82%, transparent);
   backdrop-filter: blur(12px);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-button {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  background: transparent;
+  color: var(--ink-muted);
+  transition: 140ms ease;
+}
+
+.icon-button:hover {
+  background: var(--surface-muted);
+  color: var(--ink);
+}
+
+.icon-button:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ring) 25%, transparent);
+  outline-offset: 2px;
+}
+
+.icon-button svg {
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .environment-label {
@@ -273,7 +428,7 @@ button {
 }
 
 .profile-button:focus-visible {
-  outline: 3px solid rgb(49 87 213 / 25%);
+  outline: 3px solid color-mix(in oklab, var(--ring) 25%, transparent);
   outline-offset: 2px;
 }
 
@@ -325,10 +480,10 @@ button {
 .full-page-state h1 {
   margin: 0.4rem 0 0.55rem;
   color: var(--ink);
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  font-weight: 760;
-  letter-spacing: -0.045em;
-  line-height: 1.03;
+  font-size: clamp(1.5rem, 2.5vw, 2.05rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .page-header p,
@@ -340,9 +495,9 @@ button {
 }
 
 .eyebrow {
-  color: var(--cobalt);
-  font-size: 0.66rem;
-  font-weight: 750;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .metric-grid {
@@ -360,17 +515,6 @@ button {
   padding: 1.25rem;
 }
 
-.metric-card::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 3rem;
-  height: 0.22rem;
-  border-radius: 0 0 0 1rem;
-  background: var(--cobalt);
-  content: '';
-}
-
 .metric-card > span {
   color: var(--ink-muted);
   font-size: 0.78rem;
@@ -379,10 +523,10 @@ button {
 
 .metric-card > strong {
   align-self: end;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-variant-numeric: tabular-nums;
   font-weight: 650;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 
 .metric-card > small {
@@ -410,6 +554,18 @@ button {
 .activity-card,
 .table-card {
   overflow: hidden;
+  padding: 0;
+  gap: 0;
+}
+
+.metric-card,
+.attention-card,
+.activity-card,
+.table-card {
+  border-color: transparent;
+  box-shadow:
+    0 1px 2px rgb(20 60 120 / 5%),
+    0 10px 30px rgb(20 60 120 / 7%);
 }
 
 .section-heading,
@@ -429,10 +585,10 @@ button {
 }
 
 .queue-count {
-  color: #c8d0df;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: color-mix(in oklab, var(--ink-muted) 45%, var(--surface));
   font-size: 2rem;
-  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
 }
 
 .attention-list > div {
@@ -505,96 +661,62 @@ button {
   margin-top: 0.2rem;
   border: 2px solid var(--cobalt);
   border-radius: 50%;
-  background: white;
+  background: var(--surface);
 }
 
 .activity-list time {
   color: var(--ink-muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .table-toolbar strong {
   font-size: 0.9rem;
 }
 
-.search-field input {
+.search-input {
   width: min(16rem, 40vw);
-  border: 1px solid var(--line);
-  border-radius: 0.6rem;
-  background: var(--surface-muted);
-  padding: 0.65rem 0.75rem;
-  color: var(--ink);
-}
-
-.search-field input:disabled {
-  cursor: not-allowed;
-  opacity: 0.68;
-}
-
-.table-scroll {
-  overflow-x: auto;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8rem;
-  text-align: left;
-}
-
-.data-table th {
-  background: var(--surface-muted);
-  color: var(--ink-muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.data-table th,
-.data-table td {
-  border-bottom: 1px solid var(--line);
-  padding: 0.85rem 1.35rem;
-}
-
-.data-table tr:last-child td {
-  border-bottom: 0;
-}
-
-.data-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
 }
 
 .table-avatar {
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
   flex: 0 0 auto;
-  font-size: 0.58rem;
+  font-size: 0.62rem;
 }
 
-.status-badge {
+.table-sort {
   display: inline-flex;
-  border-radius: 999px;
-  padding: 0.3rem 0.55rem;
-  font-size: 0.68rem;
-  font-weight: 750;
+  align-items: center;
+  gap: 0.35rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
 
-.status-active {
-  background: #e6f6ee;
-  color: var(--success);
+.table-sort:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ring) 25%, transparent);
+  outline-offset: 2px;
 }
-.status-invited {
-  background: #fff1db;
-  color: var(--warning);
+
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding: 0.85rem 1.35rem;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
 }
-.status-suspended {
-  background: #fdeaea;
-  color: var(--danger);
+
+.table-pagination-controls {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .empty-state,
@@ -613,8 +735,7 @@ button {
   border-radius: 0.8rem;
   background: var(--cobalt-soft);
   color: var(--cobalt);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .empty-state h2 {
@@ -633,7 +754,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: #fff8f8;
+  background: color-mix(in oklab, var(--danger) 6%, var(--surface));
   text-align: left;
 }
 
@@ -655,41 +776,64 @@ button {
   text-align: left;
 }
 
-.full-page-state .button {
-  margin-top: 1.5rem;
-}
-
 .state-code {
   color: var(--cobalt);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
-@media (max-width: 920px) {
+/*
+ * Collapsed icon rail. Driven by the data attribute so the manual toggle and
+ * the narrow-viewport auto-collapse share one implementation; guarded to
+ * viewports above the bottom-tab-bar breakpoint.
+ */
+@media (min-width: 681px) {
   .app-shell {
+    transition: grid-template-columns 200ms ease;
+  }
+
+  .app-shell[data-sidebar='collapsed'] {
     grid-template-columns: 5rem minmax(0, 1fr);
   }
 
-  .brand-lockup > div,
-  .nav-label,
-  .nav-text,
-  .system-rail > div {
+  .app-shell[data-sidebar='collapsed'] .brand-lockup > div,
+  .app-shell[data-sidebar='collapsed'] .nav-label,
+  .app-shell[data-sidebar='collapsed'] .system-rail > div {
     display: none;
   }
 
-  .brand-lockup,
-  .nav-link,
-  .system-rail {
+  /* Visually hidden, not removed: links keep their accessible names. */
+  .app-shell[data-sidebar='collapsed'] .nav-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .app-shell[data-sidebar='collapsed'] .brand-lockup,
+  .app-shell[data-sidebar='collapsed'] .nav-link,
+  .app-shell[data-sidebar='collapsed'] .system-rail {
     justify-content: center;
   }
 
-  .system-rail {
+  .app-shell[data-sidebar='collapsed'] .system-rail {
     padding-left: 0.4rem;
   }
 
-  .system-rail::before {
+  .app-shell[data-sidebar='collapsed'] .system-rail::before {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  /* The viewport forces the collapsed rail here; the manual toggle is hidden. */
+  .sidebar-toggle {
     display: none;
   }
 
@@ -770,7 +914,7 @@ button {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .attention-list .button {
+  .attention-list button {
     grid-column: 2;
     justify-self: start;
   }
@@ -780,7 +924,7 @@ button {
     flex-direction: column;
   }
 
-  .search-field input {
+  .search-input {
     width: 100%;
   }
 

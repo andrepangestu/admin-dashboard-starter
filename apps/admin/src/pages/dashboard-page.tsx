@@ -1,5 +1,5 @@
-import { Button, Card } from '@starter/ui';
-
+import { Button } from '@/shared/ui/button';
+import { Card } from '@/shared/ui/card';
 import { PageHeader } from '@/shared/ui/page-header';
 
 const metrics = [
@@ -58,7 +58,7 @@ export function DashboardPage() {
                 <strong>Approve elevated access</strong>
                 <span>Finance team · requested 18 minutes ago</span>
               </div>
-              <Button variant="secondary">Review</Button>
+              <Button variant="outline">Review</Button>
             </div>
             <div>
               <span className="priority-dot priority-medium" aria-hidden="true" />
